@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\constants">
+      <UniqueIdentifier>{59e039f4-7684-42d5-a23f-57dd7899786b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\csv_parser">
+      <UniqueIdentifier>{49174951-4200-48de-9899-05adacab4fa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities">
+      <UniqueIdentifier>{2eafbb7d-6d2b-4b04-9a35-dc15128dc500}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\util">
+      <UniqueIdentifier>{68811757-2594-4791-9338-9b96237d4f0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\writer">
+      <UniqueIdentifier>{46612bca-20d0-427b-9880-705fc16b31f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="src\entities\customer">
+      <UniqueIdentifier>{2acc2b37-948e-499d-9e67-aa94ab4f5ea2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\hotel">
+      <UniqueIdentifier>{8c2839a4-6b44-4df4-9a91-96e3ba824a76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\region">
+      <UniqueIdentifier>{ac868299-21fe-407f-a800-a2290768f3a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\room">
+      <UniqueIdentifier>{1c048127-dcaf-41c5-9a96-5033b6d130fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\staff">
+      <UniqueIdentifier>{16420150-b9c1-4868-ba1b-92f094ab5850}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\constants\price_unit_type.cpp">
+      <Filter>src\constants</Filter>
+    </ClCompile>
+    <ClCompile Include="src\csv_parser\csv_reader.cpp">
+      <Filter>src\csv_parser</Filter>
+    </ClCompile>
+    <ClCompile Include="src\csv_parser\csv_writer.cpp">
+      <Filter>src\csv_parser</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\abstract_dto_reader.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\customer\customer_dto.cpp">
+      <Filter>src\entities\customer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\customer\customer_dto_reader.cpp">
+      <Filter>src\entities\customer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\hotel\hotel_mst_dto.cpp">
+      <Filter>src\entities\hotel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\hotel\hotel_mst_dto_reader.cpp">
+      <Filter>src\entities\hotel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\staff\position_type.cpp">
+      <Filter>src\entities\staff</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\staff\rank_type.cpp">
+      <Filter>src\entities\staff</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\staff\staff_dto.cpp">
+      <Filter>src\entities\staff</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\staff\staff_dto_reader.cpp">
+      <Filter>src\entities\staff</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\room\room_type.cpp">
+      <Filter>src\entities\room</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\region\region_mst_dto.cpp">
+      <Filter>src\entities\region</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\region\region_mst_dto_reader.cpp">
+      <Filter>src\entities\region</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\strptime.cpp">
+      <Filter>src\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\utilities.cpp">
+      <Filter>src\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\writer\i_result_writer.cpp">
+      <Filter>src\writer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\writer\i_result_writer_impl.cpp">
+      <Filter>src\writer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="files\CUSTOMER_MST.csv">
+      <Filter>files</Filter>
+    </None>
+    <None Include="files\DATA_RELATIONSHIP_SAMPLE.xls">
+      <Filter>files</Filter>
+    </None>
+    <None Include="files\HOTEL_MST.csv">
+      <Filter>files</Filter>
+    </None>
+    <None Include="files\REGION_MST.csv">
+      <Filter>files</Filter>
+    </None>
+    <None Include="files\ROOM_MST.csv">
+      <Filter>files</Filter>
+    </None>
+    <None Include="files\STAFF_MST.csv">
+      <Filter>files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\constants\constants.h">
+      <Filter>src\constants</Filter>
+    </ClInclude>
+    <ClInclude Include="src\constants\messages.h">
+      <Filter>src\constants</Filter>
+    </ClInclude>
+    <ClInclude Include="src\constants\price_unit_type.h">
+      <Filter>src\constants</Filter>
+    </ClInclude>
+    <ClInclude Include="src\csv_parser\csv_constants.h">
+      <Filter>src\csv_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="src\csv_parser\csv_reader.h">
+      <Filter>src\csv_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="src\csv_parser\csv_writer.h">
+      <Filter>src\csv_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\abstract_dto_reader.h">
+      <Filter>src\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\icsv_master_dto.h">
+      <Filter>src\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\customer\customer_dto.h">
+      <Filter>src\entities\customer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\customer\customer_dto_reader.h">
+      <Filter>src\entities\customer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\hotel\hotel_mst_dto.h">
+      <Filter>src\entities\hotel</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\hotel\hotel_mst_dto_reader.h">
+      <Filter>src\entities\hotel</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\staff\position_type.h">
+      <Filter>src\entities\staff</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\staff\rank_type.h">
+      <Filter>src\entities\staff</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\staff\staff_dto.h">
+      <Filter>src\entities\staff</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\staff\staff_dto_reader.h">
+      <Filter>src\entities\staff</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\room\room_type.h">
+      <Filter>src\entities\room</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\region\region_mst_dto.h">
+      <Filter>src\entities\region</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\region\region_mst_dto_reader.h">
+      <Filter>src\entities\region</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\strptime.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\utilities.h">
+      <Filter>src\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\writer\i_result_writer.h">
+      <Filter>src\writer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\writer\i_result_writer_impl.h">
+      <Filter>src\writer</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

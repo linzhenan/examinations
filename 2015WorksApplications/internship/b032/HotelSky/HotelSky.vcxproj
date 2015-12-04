@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{21467DBF-6211-4D14-B53F-556EE68F2D05}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\Projects\examinations\2015WorksApplications\internship\b032\HotelSky\src;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\constants\price_unit_type.cpp" />
+    <ClCompile Include="src\csv_parser\csv_reader.cpp" />
+    <ClCompile Include="src\csv_parser\csv_writer.cpp" />
+    <ClCompile Include="src\entities\abstract_dto_reader.cpp" />
+    <ClCompile Include="src\entities\customer\customer_dto.cpp" />
+    <ClCompile Include="src\entities\customer\customer_dto_reader.cpp" />
+    <ClCompile Include="src\entities\hotel\hotel_mst_dto.cpp" />
+    <ClCompile Include="src\entities\hotel\hotel_mst_dto_reader.cpp" />
+    <ClCompile Include="src\entities\region\region_mst_dto.cpp" />
+    <ClCompile Include="src\entities\region\region_mst_dto_reader.cpp" />
+    <ClCompile Include="src\entities\room\room_type.cpp" />
+    <ClCompile Include="src\entities\staff\position_type.cpp" />
+    <ClCompile Include="src\entities\staff\rank_type.cpp" />
+    <ClCompile Include="src\entities\staff\staff_dto.cpp" />
+    <ClCompile Include="src\entities\staff\staff_dto_reader.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\util\strptime.cpp" />
+    <ClCompile Include="src\util\utilities.cpp" />
+    <ClCompile Include="src\writer\i_result_writer.cpp" />
+    <ClCompile Include="src\writer\i_result_writer_impl.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="files\CUSTOMER_MST.csv" />
+    <None Include="files\DATA_RELATIONSHIP_SAMPLE.xls" />
+    <None Include="files\HOTEL_MST.csv" />
+    <None Include="files\REGION_MST.csv" />
+    <None Include="files\ROOM_MST.csv" />
+    <None Include="files\STAFF_MST.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\constants\constants.h" />
+    <ClInclude Include="src\constants\messages.h" />
+    <ClInclude Include="src\constants\price_unit_type.h" />
+    <ClInclude Include="src\csv_parser\csv_constants.h" />
+    <ClInclude Include="src\csv_parser\csv_reader.h" />
+    <ClInclude Include="src\csv_parser\csv_writer.h" />
+    <ClInclude Include="src\entities\abstract_dto_reader.h" />
+    <ClInclude Include="src\entities\customer\customer_dto.h" />
+    <ClInclude Include="src\entities\customer\customer_dto_reader.h" />
+    <ClInclude Include="src\entities\hotel\hotel_mst_dto.h" />
+    <ClInclude Include="src\entities\hotel\hotel_mst_dto_reader.h" />
+    <ClInclude Include="src\entities\icsv_master_dto.h" />
+    <ClInclude Include="src\entities\region\region_mst_dto.h" />
+    <ClInclude Include="src\entities\region\region_mst_dto_reader.h" />
+    <ClInclude Include="src\entities\room\room_type.h" />
+    <ClInclude Include="src\entities\staff\position_type.h" />
+    <ClInclude Include="src\entities\staff\rank_type.h" />
+    <ClInclude Include="src\entities\staff\staff_dto.h" />
+    <ClInclude Include="src\entities\staff\staff_dto_reader.h" />
+    <ClInclude Include="src\util\strptime.h" />
+    <ClInclude Include="src\util\utilities.h" />
+    <ClInclude Include="src\writer\i_result_writer.h" />
+    <ClInclude Include="src\writer\i_result_writer_impl.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
