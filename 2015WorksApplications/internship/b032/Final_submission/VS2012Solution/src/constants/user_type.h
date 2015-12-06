@@ -14,6 +14,4 @@ enum UserType
 	COMPANY_MANAGER,
 };
 
-
-
 #endif

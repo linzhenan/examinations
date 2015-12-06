@@ -13,9 +13,22 @@ static const string kErrorWriteCsv = "Failed to Write Content as CSV File";
 static const string kInfoWelcome =
 	"Welcome to Hotel Sky :) \n";
 
-static const string kInfoSelectRole =
-	"\nSelect the user role: \n"
-	"0. Return \n"
+static const string kInfoSelectUserRole = 
+	"\nSelect the user role: \n";
+static const string kInfoSelectHotel =
+	"\nSelect the hotel: \n";
+static const string kInfoSelectRoom =
+	"\nSelect the room: \n";
+static const string kInfoSelectOption =
+	"\nSelect the option: \n";
+static const string kInfoSelectOrder =
+	"\nSelect the order: \n";
+
+static const string kInfoReturnOption =
+	"0. Return \n";
+static const string kInfoRoleOptions =
+	kInfoSelectUserRole +
+	kInfoReturnOption + 
 	"1. Customer \n"
 	"2. Receptionist \n"
 	"3. Waiter \n"
@@ -23,12 +36,11 @@ static const string kInfoSelectRole =
 	"5. Sales Manager \n"
 	"6. Hotel Manager \n"
 	"7. Company Manager \n";
-static const string kInfoSelectHotel =
-	"\nSelect the hotel: \n";
-static const string kInfoSelectRoom =
-	"\nSelect the room: \n";
-static const string kInfoReturnOption =
-	"0. Return \n";
+static const string kInfoCustomerOptions =
+	kInfoSelectOption +
+	kInfoReturnOption +
+	"1. Book room \n"
+	"2. See order \n";
 
 static const string kInfoInputPrompt =
 	"Choose: ";
