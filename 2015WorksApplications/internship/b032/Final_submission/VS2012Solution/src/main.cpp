@@ -3,22 +3,7 @@
 #include <sstream>
 
 #include "constants/constants.h"
-
 #include "csv_parser/csv_context.h"
-
-#include "entities/icsv_master_dto.h"
-#include "entities/abstract_dto_reader.h"
-#include "entities/customer/customer_dto.h"
-#include "entities/customer/customer_dto_reader.h"
-#include "entities/hotel/hotel_mst_dto.h"
-#include "entities/hotel/hotel_mst_dto_reader.h"
-#include "entities/region/region_mst_dto.h"
-#include "entities/region/region_mst_dto_reader.h"
-#include "entities/room/room_type.h"
-#include "entities/staff/position_type.h"
-#include "entities/staff/rank_type.h"
-#include "entities/staff/staff_dto.h"
-#include "entities/staff/staff_dto_reader.h"
 
 using namespace std;
 
@@ -61,7 +46,7 @@ static void select_hotel()
 	}
 	while (curr_hotel_id < 0 || curr_hotel_id > ptr_csv_hotel->context.size());
 }
-static void input_name()
+static void input_customer_name()
 {
 	cout << kInfoInputCustomerName;
 	cin >> curr_customer_name;
@@ -110,7 +95,7 @@ static void customer_book_room()
 				stringstream stream;
 				stream << price;
 				stream >> price_str;
-				cout << " " + price_str;
+				cout << " " + price_str + kInfoPriceUnit;
 				cout << " (" + discount_str + "% OFF!)\n";
 			}
 			else
@@ -118,7 +103,7 @@ static void customer_book_room()
 				stringstream stream;
 				stream << price;
 				stream >> price_str;
-				cout << " " + price_str + "\n";
+				cout << " " + price_str + kInfoPriceUnit + "\n";
 			}
 			prices.push_back(price);
 			cnt++;
@@ -181,20 +166,263 @@ static void customer_see_order()
 }
 static void customer_options()
 {
-	int customer_options_id = 0;
-	input_name();
+	int options_id = 0;
+	input_customer_name();
 	do
 	{
 		cout << kInfoCustomerOptions;
 		cout << kInfoInputPrompt;
-		cin >> customer_options_id;
-		switch (customer_options_id)
+		cin >> options_id;
+		switch (options_id)
 		{
 		case 1: select_hotel(); customer_book_room(); break;
 		case 2: customer_see_order(); break;
 		}
 	}
-	while (customer_options_id != RETURN);
+	while (options_id != RETURN);
+}
+
+static void reciptionist_check_rooms()
+{
+	int selected_room_id = 0;
+
+	do 
+	{
+		load();
+		int cnt = 0;
+		cout << kInfoSelectRoom;
+		cout << kInfoReturnOption;
+
+		for (int i = 0; i < ptr_csv_room_status->context.size(); i++)
+		{
+			if (curr_hotel_id != atoi(ptr_csv_room_status->context[i][ROOM_STATUS_MST_HOTEL_ID].c_str()))
+				continue;
+
+			cout <<
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS_ID] + ". " +
+				ptr_csv_room->context[atoi(ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_TYPE_ID].c_str()) - 1][ROOM_MST_TYPE] + ", " +
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS];
+			if (ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] != "\"\"")
+				cout << ", " +
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] + ", " +
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_FEE] + kInfoPriceUnit + "\n";
+			else
+				cout << "\n";
+		}
+		cout << kInfoInputPrompt;
+		cin >> selected_room_id;
+	}
+	while (selected_room_id != RETURN);
+}
+static void reciptionist_check_in()
+{
+	int selected_room_id = 0;
+
+	input_customer_name();
+
+	do 
+	{
+		load();
+		int cnt = 0;
+		cout << kInfoSelectRoom;
+		cout << kInfoReturnOption;
+
+		for (int i = 0; i < ptr_csv_room_status->context.size(); i++)
+		{
+			if (curr_hotel_id != atoi(ptr_csv_room_status->context[i][ROOM_STATUS_MST_HOTEL_ID].c_str()))
+				continue;
+			if (ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] != curr_customer_name &&
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS] != "avaliable")
+				continue;
+			cout <<
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS_ID] + ". " +
+				ptr_csv_room->context[atoi(ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_TYPE_ID].c_str()) - 1][ROOM_MST_TYPE] + ", " +
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS];
+			if (ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] != "\"\"")
+				cout << ", " +
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] + ", " +
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_FEE] + kInfoPriceUnit + "\n";
+			else
+				cout << "\n";
+		}
+		cout << kInfoInputPrompt;
+		cin >> selected_room_id;
+		if (selected_room_id != RETURN && ptr_csv_room_status->context[selected_room_id - 1][ROOM_STATUS_MST_CUSTOMER_NAME] == curr_customer_name)
+		{
+			ptr_csv_room_status->context[selected_room_id - 1][ROOM_STATUS_MST_ROOM_STATUS] = "inused";
+			cout << "Check-in successfully.\n";
+			submit();
+		}
+	}
+	while (selected_room_id != RETURN);
+}
+static void reciptionist_check_out()
+{
+	int selected_room_id = 0;
+
+	input_customer_name();
+
+	do 
+	{
+		load();
+		int cnt = 0;
+		cout << kInfoSelectRoom;
+		cout << kInfoReturnOption;
+
+		for (int i = 0; i < ptr_csv_room_status->context.size(); i++)
+		{
+			if (curr_hotel_id != atoi(ptr_csv_room_status->context[i][ROOM_STATUS_MST_HOTEL_ID].c_str()))
+				continue;
+			if (ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] != curr_customer_name)
+				continue;
+			cout <<
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS_ID] + ". " +
+				ptr_csv_room->context[atoi(ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_TYPE_ID].c_str()) - 1][ROOM_MST_TYPE] + ", " +
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS];
+			if (ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] != "\"\"")
+				cout << ", " +
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] + ", " +
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_FEE] + kInfoPriceUnit + "\n";
+			else
+				cout << "\n";
+		}
+		cout << kInfoInputPrompt;
+		cin >> selected_room_id;
+		if (selected_room_id != RETURN && ptr_csv_room_status->context[selected_room_id - 1][ROOM_STATUS_MST_CUSTOMER_NAME] == curr_customer_name)
+		{
+			ptr_csv_room_status->context[selected_room_id - 1][ROOM_STATUS_MST_CUSTOMER_NAME] = "";
+			ptr_csv_room_status->context[selected_room_id - 1][ROOM_STATUS_MST_FEE] = "0";
+			ptr_csv_room_status->context[selected_room_id - 1][ROOM_STATUS_MST_ROOM_STATUS] = "available";
+			cout << "Check-out successfully.\n";
+			submit();
+		}
+	}
+	while (selected_room_id != RETURN);
+}
+static void reciptionist_options()
+{
+	int options_id = 0;
+	select_hotel();
+	do
+	{
+		cout << kInfoReciptionistOptions;
+		cout << kInfoInputPrompt;
+		cin >> options_id;
+		switch (options_id)
+		{
+		case 1: reciptionist_check_rooms(); break;
+		case 2: reciptionist_check_in(); break;
+		case 3: reciptionist_check_out(); break;
+		}
+	}
+	while (options_id != RETURN);
+}
+
+static void salesmanager_check_sales()
+{
+	int option_id = 0;
+	do
+	{
+		load();
+		for (int i = 0; i < ptr_csv_room->context.size(); i++)
+		{
+			cout << ptr_csv_room->context[i][ROOM_MST_TYPE] + " : ";
+			int booked = 0; string booked_str;
+			int inused = 0; string inused_str;
+			int available = 0; string available_str;
+			int unavailable = 0; string unavailable_str;
+			int total = 0; string total_str;
+			double vacancy = 0; string vacancy_str;
+
+			for (int j = 0; j < ptr_csv_room_status->context.size(); j++)
+			{
+				if (atoi(ptr_csv_room_status->context[j][ROOM_STATUS_MST_HOTEL_ID].c_str()) != curr_hotel_id)
+					continue;
+				if (ptr_csv_room_status->context[j][ROOM_STATUS_MST_ROOM_TYPE_ID] != ptr_csv_room->context[i][ROOM_MST_ID])
+					continue;
+				if (ptr_csv_room_status->context[j][ROOM_STATUS_MST_ROOM_STATUS] == "booked")
+					booked++;
+				else if (ptr_csv_room_status->context[j][ROOM_STATUS_MST_ROOM_STATUS] == "inused")
+					inused++;
+				else if (ptr_csv_room_status->context[j][ROOM_STATUS_MST_ROOM_STATUS] == "available")
+					available++;
+				else if (ptr_csv_room_status->context[j][ROOM_STATUS_MST_ROOM_STATUS] == "unavailable")
+					unavailable++;
+				total++;
+			}
+			vacancy = available * 1.0 / total * 100;
+			stringstream stream;
+			stream.clear(); stream << booked; stream >> booked_str;
+			stream.clear(); stream << inused; stream >> inused_str;
+			stream.clear(); stream << available; stream >> available_str;
+			stream.clear(); stream << unavailable; stream >> unavailable_str;
+			stream.clear(); stream << vacancy; stream >> vacancy_str;
+			stream.clear(); stream << total; stream >> total_str;
+			cout << "booked " + booked_str + ", ";
+			cout << "inused " + inused_str + ", ";
+			cout << "available " + available_str + ", ";
+			cout << "unavailable " + unavailable_str + ", ";
+			cout << "total " + total_str + ", ";
+			cout << "vacancy " + vacancy_str + "%\n";
+		}
+		cout << kInfoInputPrompt;
+		cin >> option_id;
+	}
+	while (option_id != RETURN);
+	
+}
+static void salesmanager_make_discount()
+{
+	int option_id = 0;
+	do
+	{
+		cout << kInfoSelectRoomType;
+		cout << kInfoReturnOption;
+		for (int i = 0; i < ptr_csv_discount->context.size(); i++)
+		{
+			if (atoi(ptr_csv_discount->context[i][DISCOUNT_MST_HOTEL_ID].c_str()) != curr_hotel_id)
+				continue;
+			cout << ptr_csv_discount->context[i][DISCOUNT_MST_ID] + ". ";
+
+			int room_type_id = atoi(ptr_csv_discount->context[i][DISCOUNT_MST_ROOM_TYPE_ID].c_str());
+			string room_type;
+			for (int j = 0; j < ptr_csv_room->context.size(); j++)
+				if (ptr_csv_room->context[j][ROOM_MST_ID] == ptr_csv_discount->context[i][DISCOUNT_MST_ROOM_TYPE_ID])
+					cout << ptr_csv_room->context[j][ROOM_MST_TYPE] + ": ";
+			cout << ptr_csv_discount->context[i][DISCOUNT_MST_DISCOUNT] + "%\n";
+		}
+		cout << kInfoInputPrompt;
+		cin >> option_id;
+
+		if (option_id != RETURN)
+		{
+			string curr_discount;
+			cout << kInfoInputDiscount;
+			cin >> curr_discount;
+
+			ptr_csv_discount->context[option_id - 1][DISCOUNT_MST_DISCOUNT] = curr_discount;
+			submit();
+			cout << "Successfully\n";
+		}
+	}
+	while (option_id != RETURN);
+}
+static void salesmanager_options()
+{
+	int options_id = 0;
+	select_hotel();
+	do
+	{
+		cout << kInfoSalesManagerOptions;
+		cout << kInfoInputPrompt;
+		cin >> options_id;
+		switch (options_id)
+		{
+		case 1: salesmanager_check_sales(); break;
+		case 2: salesmanager_make_discount(); break;
+		}
+	}
+	while (options_id != RETURN);
 }
 
 int main(int argc, char** argv)
@@ -204,17 +432,16 @@ int main(int argc, char** argv)
 	cout <<kInfoWelcome;
 	do 
 	{
-		load();
 		cout << kInfoRoleOptions;
 		cout << kInfoInputPrompt;
 		cin >> curr_user_id;
 		switch (curr_user_id)
 		{
 		case CUSTOMER: customer_options(); break;
-		case RECEPTIONIST: break;
+		case RECEPTIONIST: reciptionist_options(); break;
 		case WAITER: break;
 		case HR: break;
-		case SALES_MANAGER: break;
+		case SALES_MANAGER: salesmanager_options(); break;
 		case HOTEL_MANAGER: break;
 		case COMPANY_MANAGER: break;
 		default: break;
