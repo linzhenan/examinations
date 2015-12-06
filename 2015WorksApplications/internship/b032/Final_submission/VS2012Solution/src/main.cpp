@@ -78,9 +78,14 @@ static void customer_book_room()
 		cout << kInfoSelectRoom;
 		cout << kInfoReturnOption;
 		vector<int> prices;
+
 		for (int i = 0; i < ptr_csv_room_status->context.size(); i++)
 		{
-			string discount = "0";
+			int discount;
+			string discount_str = "0";
+			string price_str = ptr_csv_room->context[atoi(ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_TYPE_ID].c_str()) - 1][ROOM_MST_PRICE];
+			int price = atoi(price_str.c_str());
+
 			if (curr_hotel_id != atoi(ptr_csv_room_status->context[i][ROOM_STATUS_MST_HOTEL_ID].c_str()))
 				continue;
 			if (ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS] != "available")
@@ -93,27 +98,29 @@ static void customer_book_room()
 				stream >> str;
 				if (ptr_csv_discount->context[j][DISCOUNT_MST_HOTEL_ID] == str &&
 					ptr_csv_discount->context[j][DISCOUNT_MST_ROOM_TYPE_ID] == ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_TYPE_ID])
-					discount = ptr_csv_discount->context[j][DISCOUNT_MST_DISCOUNT].c_str();
+					discount_str = ptr_csv_discount->context[j][DISCOUNT_MST_DISCOUNT].c_str();
 			}
 			cout <<
 				ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS_ID] + ". " +
 				ptr_csv_room->context[atoi(ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_TYPE_ID].c_str()) - 1][ROOM_MST_TYPE];
-			if (discount != "0")
+			if (discount_str != "0")
 			{
-				int discount_percent = atoi(discount.c_str());
-				int price = atoi(ptr_csv_room->context[atoi(ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_TYPE_ID].c_str()) - 1][ROOM_MST_PRICE].c_str());
-				price = (int)(price * 1.0 * (100 - discount_percent) / 100);
-				prices.push_back(price);
-				cout << " " + price;
-				cout << " (" + discount + "% OFF!)\n";
+				discount = atoi(discount_str.c_str());
+				price = (int)(price * 1.0 * (100 - discount) / 100);
+				stringstream stream;
+				stream << price;
+				stream >> price_str;
+				cout << " " + price_str;
+				cout << " (" + discount_str + "% OFF!)\n";
 			}
 			else
 			{
-				int price = atoi(ptr_csv_room->context[atoi(ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_TYPE_ID].c_str()) - 1][ROOM_MST_PRICE].c_str());
-				prices.push_back(price);
-				cout << " " + price;
-				cout << "\n";
+				stringstream stream;
+				stream << price;
+				stream >> price_str;
+				cout << " " + price_str + "\n";
 			}
+			prices.push_back(price);
 			cnt++;
 		}
 		cout << "There are ";
@@ -143,7 +150,7 @@ static void customer_see_order()
 	do 
 	{
 		load();
-		cout << kInfoSelectOperation;
+		cout << kInfoSelectOption;
 		cout << kInfoReturnOption;
 		for (int i = 0; i < ptr_csv_room_status->context.size(); i++)
 		{
