@@ -2,7 +2,6 @@
 #define CONSTANTS_H_
 
 #include "messages.h"
-#include "price_unit_type.h"
 #include "user_type.h"
 #include "data_relationship.h"
 

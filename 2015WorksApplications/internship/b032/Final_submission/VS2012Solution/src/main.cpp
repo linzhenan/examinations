@@ -202,7 +202,8 @@ static void reciptionist_check_rooms()
 				ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS_ID] + ". " +
 				ptr_csv_room->context[atoi(ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_TYPE_ID].c_str()) - 1][ROOM_MST_TYPE] + ", " +
 				ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS];
-			if (ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] != "\"\"")
+			if (ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] != "\"\"" &&
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] != "")
 				cout << ", " +
 				ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] + ", " +
 				ptr_csv_room_status->context[i][ROOM_STATUS_MST_FEE] + kInfoPriceUnit + "\n";
@@ -232,13 +233,14 @@ static void reciptionist_check_in()
 			if (curr_hotel_id != atoi(ptr_csv_room_status->context[i][ROOM_STATUS_MST_HOTEL_ID].c_str()))
 				continue;
 			if (ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] != curr_customer_name &&
-				ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS] != "avaliable")
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS] != "available")
 				continue;
 			cout <<
 				ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS_ID] + ". " +
 				ptr_csv_room->context[atoi(ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_TYPE_ID].c_str()) - 1][ROOM_MST_TYPE] + ", " +
 				ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS];
-			if (ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] != "\"\"")
+			if (ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] != "\"\"" &&
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] != "")
 				cout << ", " +
 				ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] + ", " +
 				ptr_csv_room_status->context[i][ROOM_STATUS_MST_FEE] + kInfoPriceUnit + "\n";
@@ -279,7 +281,8 @@ static void reciptionist_check_out()
 				ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS_ID] + ". " +
 				ptr_csv_room->context[atoi(ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_TYPE_ID].c_str()) - 1][ROOM_MST_TYPE] + ", " +
 				ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS];
-			if (ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] != "\"\"")
+			if (ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] != "\"\"" &&
+				ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] != "")
 				cout << ", " +
 				ptr_csv_room_status->context[i][ROOM_STATUS_MST_CUSTOMER_NAME] + ", " +
 				ptr_csv_room_status->context[i][ROOM_STATUS_MST_FEE] + kInfoPriceUnit + "\n";
