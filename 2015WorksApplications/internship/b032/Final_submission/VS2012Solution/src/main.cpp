@@ -72,9 +72,15 @@ static void customer_book_room()
 			int price = atoi(price_str.c_str());
 
 			if (curr_hotel_id != atoi(ptr_csv_room_status->context[i][ROOM_STATUS_MST_HOTEL_ID].c_str()))
+			{
+				prices.push_back(0);
 				continue;
+			}
 			if (ptr_csv_room_status->context[i][ROOM_STATUS_MST_ROOM_STATUS] != "available")
+			{
+				prices.push_back(0);
 				continue;
+			}
 			for (int j = 0; j < ptr_csv_discount->context.size(); j++)
 			{
 				string str;
