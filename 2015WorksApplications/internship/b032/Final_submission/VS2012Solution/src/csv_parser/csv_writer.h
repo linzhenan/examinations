@@ -14,13 +14,11 @@ public:
 	CSVWriter(ofstream &out, char separator, char quotechar);
 	void write_all(vector<vector<string> > all_lines);
 	void close();
-
+	void write_next(vector<string> &next_line);
 private:
 	ofstream &out;
 	char separator;
 	char quotechar;
-
-	void write_next(vector<string> &next_line);
 };
 
 #endif /* CSV_WRITER_H_ */

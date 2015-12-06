@@ -101,6 +101,9 @@
     <ClCompile Include="src\writer\i_result_writer_impl.cpp">
       <Filter>src\writer</Filter>
     </ClCompile>
+    <ClCompile Include="src\csv_parser\csv_context.cpp">
+      <Filter>src\csv_parser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="files\CUSTOMER_MST.csv">
@@ -119,6 +122,12 @@
       <Filter>files</Filter>
     </None>
     <None Include="files\STAFF_MST.csv">
+      <Filter>files</Filter>
+    </None>
+    <None Include="files\DISCOUNT_MST.csv">
+      <Filter>files</Filter>
+    </None>
+    <None Include="files\ROOM_STATUS_MST.csv">
       <Filter>files</Filter>
     </None>
   </ItemGroup>
@@ -191,6 +200,15 @@
     </ClInclude>
     <ClInclude Include="src\writer\i_result_writer_impl.h">
       <Filter>src\writer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\csv_parser\csv_context.h">
+      <Filter>src\csv_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="src\constants\user_type.h">
+      <Filter>src\constants</Filter>
+    </ClInclude>
+    <ClInclude Include="src\constants\data_relationship.h">
+      <Filter>src\constants</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

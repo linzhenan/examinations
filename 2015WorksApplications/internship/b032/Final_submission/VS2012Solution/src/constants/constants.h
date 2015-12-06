@@ -1,6 +1,11 @@
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
 
+#include "messages.h"
+#include "price_unit_type.h"
+#include "user_type.h"
+#include "data_relationship.h"
+
 #include <string>
 using namespace std;
 
@@ -15,5 +20,8 @@ static const char kDefaultCsvSeparator = ',';
 
 /** default csv quote char */
 static const char kDefaultCsvQuotechar = '\"';
+
+#define RETURN 0
+
 
 #endif /* CONSTANTS_H_ */

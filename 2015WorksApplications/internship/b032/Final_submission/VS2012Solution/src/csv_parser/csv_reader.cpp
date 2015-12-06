@@ -33,7 +33,7 @@ CSVReader::CSVReader(ifstream &in, const char separator, const char quotechar) :
 	this->quotechar = quotechar;
 }
 
-void CSVReader::read_next(vector<string> &result) {
+bool CSVReader::read_next(vector<string> &result) {
 	result.clear();
 	string line;
 	string lineTmp;
@@ -44,7 +44,7 @@ void CSVReader::read_next(vector<string> &result) {
 	while (is_first_read || quote_count_per_line % 2 != 0) {
 		is_first_read = false;
 		if (getline(this->in, lineTmp) == NULL) {
-			return;
+			return false;
 		}
 		for (unsigned i = 0; i < lineTmp.size(); i++) {
 			char c = lineTmp[i];
@@ -74,6 +74,7 @@ void CSVReader::read_next(vector<string> &result) {
 	}
 	string cell = line.substr(start_index, size - start_index);
 	result.push_back(trim_quotes(cell));
+	return true;
 }
 
 void CSVReader::close() {

@@ -37,7 +37,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Projects\examinations\2015WorksApplications\internship\b032\HotelSky\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -45,7 +45,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -73,6 +73,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\constants\price_unit_type.cpp" />
+    <ClCompile Include="src\csv_parser\csv_context.cpp" />
     <ClCompile Include="src\csv_parser\csv_reader.cpp" />
     <ClCompile Include="src\csv_parser\csv_writer.cpp" />
     <ClCompile Include="src\entities\abstract_dto_reader.cpp" />
@@ -96,16 +97,21 @@
   <ItemGroup>
     <None Include="files\CUSTOMER_MST.csv" />
     <None Include="files\DATA_RELATIONSHIP_SAMPLE.xls" />
+    <None Include="files\DISCOUNT_MST.csv" />
     <None Include="files\HOTEL_MST.csv" />
     <None Include="files\REGION_MST.csv" />
     <None Include="files\ROOM_MST.csv" />
+    <None Include="files\ROOM_STATUS_MST.csv" />
     <None Include="files\STAFF_MST.csv" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\constants\constants.h" />
+    <ClInclude Include="src\constants\data_relationship.h" />
     <ClInclude Include="src\constants\messages.h" />
     <ClInclude Include="src\constants\price_unit_type.h" />
+    <ClInclude Include="src\constants\user_type.h" />
     <ClInclude Include="src\csv_parser\csv_constants.h" />
+    <ClInclude Include="src\csv_parser\csv_context.h" />
     <ClInclude Include="src\csv_parser\csv_reader.h" />
     <ClInclude Include="src\csv_parser\csv_writer.h" />
     <ClInclude Include="src\entities\abstract_dto_reader.h" />

@@ -13,7 +13,7 @@ public:
 	CSVReader(ifstream &in);
 	CSVReader(ifstream &in, const char separator);
 	CSVReader(ifstream &in, const char separator, const char quotechar);
-	void read_next(vector<string> &result);
+	bool read_next(vector<string> &result);
 	void close();
 
 private:
